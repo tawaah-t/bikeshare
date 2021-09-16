@@ -19,12 +19,12 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city = input("Would you like to see data for Chicago, New York, or Washington?\n")
-        city = city.lower()
+        city = city.lower() #the lower is for user input error control
         if city in ['chicago', 'new york city', 'washington']:
             break
         else:
             print("Invalid input. Please enter a valid input")
-   
+
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         month = input("For which month Would you like to see data? January, February, March, April, May, or June? or type all.\n")
@@ -101,7 +101,7 @@ def time_stats(df):
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
-    
+
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
     # TO DO: display the most common month
@@ -130,7 +130,7 @@ def time_stats(df):
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
     return df
 
 def station_stats(df):
@@ -143,20 +143,20 @@ def station_stats(df):
 
     start_station = df['Start Station'].mode()[0]
     print('Commonly Used Start Station:',start_station)
-    
+
     # TO DO: display most commonly used end station
-    
+
     end_station = df['End Station'].mode()[0]
     print('Commonly Used End Station:',end_station)
-        
+
     # TO DO: display most frequent combination of start station and end station trip
     com = df['Start Station'] + " " + df['End Station'].mode()[0]
     print('Most frequent combination of start station and end station trip:',com)
-    
+
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
     return df
 
 
@@ -172,10 +172,10 @@ def trip_duration_stats(df):
     # TO DO: display mean travel time
     mean = df['Trip Duration'].mean()
     print('Average travel time',mean)
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
     return df
 
 
@@ -184,15 +184,15 @@ def user_stats(df, city):
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
-   
+
     # TO DO: Display counts of user types
-  
+
     user_types = df['User Type'].value_counts()
 
     print('Users Types:',user_types)
-    
+
      # TO DO: Display counts of gender
-        
+
     if city == 'chicago' or city == 'new york city':
         user_gender = df['Gender'].value_counts()
         print('Users Gender:',user_gender)
@@ -207,13 +207,13 @@ def user_stats(df, city):
         print('Oldest Users:',oldest)
         print('youngest Users:',youngest)
         print('Most common age of Users:',common)
-        
-      
-  
-    
+
+
+
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-    
+
     return df
 
 
@@ -226,7 +226,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df, city)
-        
+
         x=input('Do you want to see the raw data ? Type: yes or no.\n').lower()
         index=0
         while x == "yes":
@@ -235,8 +235,8 @@ def main():
             x=input('Do you want to print more raw data ? Type: yes or no.\n').lower()
             if x == 'no':
                 break
-               
-          
+
+
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
